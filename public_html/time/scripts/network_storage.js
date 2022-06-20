@@ -9,8 +9,8 @@ function network_storage() {
     });
     if (response.status !== 200) return false;
     response = await response.json();
-    if (!response.success) return false;
-    return true;
+    return response.success;
+
   }
 
 
