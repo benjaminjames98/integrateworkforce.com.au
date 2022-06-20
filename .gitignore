@@ -1,0 +1,6 @@
+db_configs.php
+/logs/
+/.htpasswd/
+/awstats/
+/public_html/cgi-bin/
+/public_html/index.html
