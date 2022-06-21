@@ -21,6 +21,7 @@ function state_manager() {
     e.preventDefault();
 
     let address = await navigator.get_address_string();
+    if (address.err) return view.show_error(`That didn't work.\n${address.err}`);
 
     if (!await archive.create_record(username, e.detail.new_state, address)) {
       return view.show_error("That didn't work."

@@ -2,7 +2,7 @@ function html_navigator_facade() {
 
   async function get_address_string() {
     let coords = await get_coords();
-    return (coords.err) ? coords.err :
+    return (coords.err) ? coords :
       await get_address_from_coords(coords.lat, coords.long);
   }
 
