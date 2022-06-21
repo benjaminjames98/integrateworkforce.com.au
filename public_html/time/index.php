@@ -19,6 +19,8 @@
           width: 100%;
       }
   </style>
+  <script src="scripts/html_navigator_facade.js"></script>
+  <script src="scripts/google_configs.js"></script>
   <script src="scripts/cookie_storage.js"></script>
   <script src="scripts/network_storage.js"></script>
   <script src="scripts/html_interface.js"></script>

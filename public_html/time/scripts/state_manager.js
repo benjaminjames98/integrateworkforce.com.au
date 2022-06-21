@@ -2,6 +2,7 @@ function state_manager() {
   let storage = cookie_storage();
   let archive = network_storage();
   let view = html_interface();
+  let navigator = html_navigator_facade();
 
   let username = storage.read("username");
   if (username === "") {
@@ -19,7 +20,9 @@ function state_manager() {
   async function event_handler(e) {
     e.preventDefault();
 
-    if (!await archive.create_record(username, e.detail.new_state)) {
+    let address = await navigator.get_address_string();
+
+    if (!await archive.create_record(username, e.detail.new_state, address)) {
       return view.show_error("That didn't work."
         + " Are you connected to the internet? If so, please try again");
     }
