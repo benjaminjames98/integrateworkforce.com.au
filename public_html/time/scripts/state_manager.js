@@ -34,8 +34,7 @@ function state_manager() {
         + " Are you connected to the internet? If so, please try again", true);
     }
 
-    view.show_alert(`${e.detail.action} Successful`, false);
-
+    view.show_alert(`Successful: ${e.detail.action}`, false);
     storage.update("state", e.detail.new_state);
     view.show_state(e.detail.new_state);
   }
