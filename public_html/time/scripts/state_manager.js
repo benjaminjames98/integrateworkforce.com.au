@@ -23,8 +23,8 @@ function state_manager() {
 
     let address = await navigator.get_address_string();
     if (address.err) {
-      return view.show_alert(`That didn't work.\n${address.err}`, true);
-      view.freeze(false);
+      view.show_alert(`That didn't work.\n${address.err}`, true);
+      return view.freeze(false);
     }
 
     if (!await archive.create_record(
@@ -33,9 +33,9 @@ function state_manager() {
       e.detail.new_state,
       address
     )) {
-      return view.show_alert("That didn't work."
+      view.show_alert("That didn't work."
         + " Are you connected to the internet? If so, please try again", true);
-      view.freeze(false);
+      return view.freeze(false);
     }
 
     view.show_alert(`Successful: ${e.detail.action}`, false);
