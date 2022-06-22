@@ -7,11 +7,21 @@ switch ($_SERVER['REQUEST_METHOD']) {
     $input = read_json_input();
     $db = get_db();
 
-    $query = "INSERT INTO integrat_timesheets.record (username, state) VALUES (?, ?)";
+    $query = <<<MYSQL
+INSERT INTO integrat_timesheets.record
+    (username, new_state, action, address)
+VALUES (?, ?, ?, ?);
+MYSQL;
     $stmt = $db->prepare($query);
-    $stmt->bind_param('ss', $input['username'], $input['state']);
+    $stmt->bind_param('ssss',
+      $input['username'],
+      $input['new_state'],
+      $input['action'],
+      $input['address']
+    );
     if (!$stmt->execute()) throw_error('db failure: ' . $db->error);
     else echo json_encode(['success' => true, 'id' => $db->insert_id,]);
+
     break;
   case 'PATCH':
   case 'DELETE':
