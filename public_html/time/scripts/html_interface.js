@@ -44,7 +44,17 @@ function html_interface() {
     create_alert_div(error_div, title, msg, color);
   }
 
-  return {add_state_event_handler, show_state, show_username, show_alert};
+  function freeze(disable) {
+    state_buttons.forEach(button => button.disabled = disable);
+  }
+
+  return {
+    add_state_event_handler,
+    show_state,
+    show_username,
+    show_alert,
+    freeze
+  };
 
 // Implementation Specific
 
@@ -82,13 +92,13 @@ function html_interface() {
       let title = document.createElement("p");
       title.innerText = title_text;
       title.style.fontSize = "125%";
-      error.append(title)
+      error.append(title);
     }
 
     if (msg_text) {
       let msg = document.createElement("p");
       msg.innerText = msg_text;
-      error.append(msg)
+      error.append(msg);
     }
 
     parent_node.append(error);

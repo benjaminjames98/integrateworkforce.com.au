@@ -19,10 +19,13 @@ function state_manager() {
   // This is used to parse events from the interface
   async function event_handler(e) {
     e.preventDefault();
+    view.freeze(true);
 
     let address = await navigator.get_address_string();
-    if (address.err)
+    if (address.err) {
       return view.show_alert(`That didn't work.\n${address.err}`, true);
+      view.freeze(false);
+    }
 
     if (!await archive.create_record(
       username,
@@ -32,10 +35,12 @@ function state_manager() {
     )) {
       return view.show_alert("That didn't work."
         + " Are you connected to the internet? If so, please try again", true);
+      view.freeze(false);
     }
 
     view.show_alert(`Successful: ${e.detail.action}`, false);
     storage.update("state", e.detail.new_state);
     view.show_state(e.detail.new_state);
+    view.freeze(false);
   }
 }
