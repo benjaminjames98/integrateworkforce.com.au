@@ -1,4 +1,8 @@
 function html_interface() {
+
+  if (location.protocol === "http:")
+    location.replace(location.href.replaceAll("http:", "https:"));
+
   const state_views = {
     clocked_off: ["clock_on"],
     on_break: ["end_break"],
