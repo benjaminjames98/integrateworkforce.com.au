@@ -5,8 +5,8 @@ function html_interface() {
 
   const state_views = {
     clocked_off: ["clock_on"],
-    on_break: ["end_break"],
-    clocked_on: ["begin_break", "clock_off"]
+    on_break: ["new_worksite", "end_break"],
+    clocked_on: ["new_worksite", "begin_break", "clock_off"]
   };
   const name_field = el("name");
   const error_div = el("error_div");
@@ -14,6 +14,7 @@ function html_interface() {
 
   let state_button_info = [
     {label: "Clock On", id: "clock_on", state: "clocked_on"},
+    {label: "New Worksite", id: "new_worksite", state: "clocked_on"},
     {label: "Begin Lunch", id: "begin_break", state: "on_break"},
     {label: "End Lunch", id: "end_break", state: "clocked_on"},
     {label: "Clock Off", id: "clock_off", state: "clocked_off"}
@@ -37,11 +38,13 @@ function html_interface() {
     });
   }
 
-  function show_error(msg) {
-    create_error_div(error_div, msg);
+  function show_alert(msg, error) {
+    let title = error ? "Error:" : false;
+    let color = error ? "yellow" : "green";
+    create_alert_div(error_div, title, msg, color);
   }
 
-  return {add_state_event_handler, show_state, show_username, show_error};
+  return {add_state_event_handler, show_state, show_username, show_alert};
 
 // Implementation Specific
 
@@ -57,7 +60,7 @@ function html_interface() {
     button.innerText = info.label;
     button.addEventListener("click", function () {
       let event = new CustomEvent("state_change", {
-        detail: {new_state: info.state},
+        detail: {action: info.label, new_state: info.state},
         bubbles: true
       });
       this.dispatchEvent(event);
@@ -65,21 +68,29 @@ function html_interface() {
     return button;
   }
 
-  function create_error_div(parent_node, message_text) {
+  function create_alert_div(parent_node, title_text, msg_text, color = "green") {
     let error = document.createElement("div");
-    let close = document.createElement("span");
-    let title = document.createElement("p");
-    let msg = document.createElement("p");
 
-    error.className = "w3-container w3-yellow w3-display-container";
+    let close = document.createElement("span");
+    error.className = `w3-container w3-${color} w3-display-container`;
     close.onclick = () => parent_node.removeChild(error);
     close.className = "w3-button w3-display-topright";
     close.innerHTML = "×";
-    title.innerText = "Error:";
-    title.style.fontSize = "125%";
-    msg.innerText = message_text;
+    error.append(close);
 
-    error.append(close, title, msg);
+    if (title_text) {
+      let title = document.createElement("p");
+      title.innerText = title_text;
+      title.style.fontSize = "125%";
+      error.append(title)
+    }
+
+    if (msg_text) {
+      let msg = document.createElement("p");
+      msg.innerText = msg_text;
+      error.append(msg)
+    }
+
     parent_node.append(error);
   }
 }

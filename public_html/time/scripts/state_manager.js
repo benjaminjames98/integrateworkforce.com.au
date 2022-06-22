@@ -21,12 +21,20 @@ function state_manager() {
     e.preventDefault();
 
     let address = await navigator.get_address_string();
-    if (address.err) return view.show_error(`That didn't work.\n${address.err}`);
+    if (address.err)
+      return view.show_alert(`That didn't work.\n${address.err}`, true);
 
-    if (!await archive.create_record(username, e.detail.new_state, address)) {
-      return view.show_error("That didn't work."
-        + " Are you connected to the internet? If so, please try again");
+    if (!await archive.create_record(
+      username,
+      e.detail.action,
+      e.detail.new_state,
+      address
+    )) {
+      return view.show_alert("That didn't work."
+        + " Are you connected to the internet? If so, please try again", true);
     }
+
+    view.show_alert(`${e.detail.action} Successful`, false);
 
     storage.update("state", e.detail.new_state);
     view.show_state(e.detail.new_state);
