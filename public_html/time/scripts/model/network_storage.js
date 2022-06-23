@@ -11,7 +11,6 @@ function network_storage() {
     if (response.status !== 200) return false;
     response = await response.json();
     return response.success;
-
   }
 
 

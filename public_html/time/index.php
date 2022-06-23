@@ -19,12 +19,12 @@
           width: 100%;
       }
   </style>
-  <script src="scripts/html_navigator_facade.js"></script>
-  <script src="scripts/google_configs.js"></script>
-  <script src="scripts/cookie_storage.js"></script>
-  <script src="scripts/network_storage.js"></script>
-  <script src="scripts/html_interface.js"></script>
-  <script src="scripts/state_manager.js"></script>
+  <script src="scripts/model/google_api/location_services/html_navigator_facade.js"></script>
+  <script src="scripts/model/google_api/google_configs.js"></script>
+  <script src="scripts/model/cookie_storage.js"></script>
+  <script src="scripts/model/network_storage.js"></script>
+  <script src="scripts/view/html_interface.js"></script>
+  <script src="scripts/controller/state_manager.js"></script>
 </head>
 <body>
 

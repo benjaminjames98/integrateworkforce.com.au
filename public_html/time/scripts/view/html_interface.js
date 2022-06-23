@@ -101,6 +101,7 @@ function html_interface() {
       error.append(msg);
     }
 
+    parent_node.innerText = '';
     parent_node.append(error);
   }
 }
