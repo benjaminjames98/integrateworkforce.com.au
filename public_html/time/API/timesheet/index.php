@@ -1,6 +1,7 @@
 <?php
 
 include __DIR__ . '/../../../../db.php';
+include __DIR__ . '/../imports/utils.php';
 
 switch ($_SERVER['REQUEST_METHOD']) {
   case 'PUT':
@@ -31,15 +32,3 @@ MYSQL;
 }
 
 die(0);
-
-// Utilities
-
-function read_json_input() {
-  $json = file_get_contents('php://input');
-  return json_decode($json, true);
-}
-
-function throw_error($msg = "") {
-  echo json_encode(['success' => false, 'message' => $msg]);
-  die();
-}

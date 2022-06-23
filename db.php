@@ -1,6 +1,6 @@
 <?php
 
-include __DIR__ . '/db_configs.php';
+include __DIR__ . '/configs.php';
 
 function get_db() {
   $cfg = get_db_configs();
