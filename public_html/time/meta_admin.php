@@ -30,9 +30,9 @@
     </label>
     <br>
     <input type="submit" class="w3-button w3-green">
+    <p id="result_p"></p>
+    <br>
   </form>
-  <p id="result_p"></p>
-  <br>
 </div>
 
 <script>
