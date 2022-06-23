@@ -21,7 +21,8 @@
 
 <div class="w3-bar w3-responsive">
   <p id="greeting_p" class="w3-bar-item"></p>
-  <button class="w3-bar-item w3-button w3-right w3-green">Logout</button>
+  <button class="w3-bar-item w3-button w3-right w3-green"
+  onclick="location.href = './logout.php'">Logout</button>
 </div>
 
 
