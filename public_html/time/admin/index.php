@@ -25,7 +25,7 @@
 </div>
 
 
-<div id="content_container" class="w3-container w3-responsive">
+<div id="content_container" class="w3-responsive">
   <table id="records_table"
          class="w3-table-all w3-bordered w3-striped w3-border w3-hoverable">
   </table>
