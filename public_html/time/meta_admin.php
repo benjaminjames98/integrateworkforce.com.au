@@ -13,9 +13,6 @@
 </head>
 <body>
 
-<div id="error_div"></div>
-
-
 <div style="max-width: 80ch;">
   <div class="w3-green w3-container">
     <h1>Create Admin</h1>
@@ -34,25 +31,27 @@
     <br>
     <input type="submit" class="w3-button w3-green">
   </form>
-  <p class=""></p>
+  <p id="result_p"></p>
   <br>
 </div>
 
 <script>
   let form = document.getElementById("form");
 
-  form.addEventListener("submit", e => {
+  form.addEventListener("submit", async e => {
     e.preventDefault();
 
     let formData = new FormData(e.currentTarget);
 
     let authenticator = password_authenticator();
-    let success = authenticator.create_user(
+    let response = await authenticator.create_user(
       formData.get("name"),
       formData.get("pass"),
       formData.get("meta")
     );
 
+    document.getElementById("result_p").innerText =
+      typeof response === "string" ? response : "Successfully created user.";
   });
 </script>
 

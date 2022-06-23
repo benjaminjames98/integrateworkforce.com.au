@@ -9,7 +9,7 @@ function password_authenticator() {
 
     if (response.status !== 200) return false;
     response = await response.json();
-    return response.success || response["msg"];
+    return response.success || response["message"];
   }
 
   async function get_auth_code() {
