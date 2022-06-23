@@ -1,7 +1,3 @@
-<?php
-session_start();
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,20 +9,19 @@ session_start();
           font-size: 1em;
       }
   </style>
-  <script src="../scripts/controller/admin_state_manager.js"></script>
-  <script src="../scripts/model/auth/password_authenticator.js"></script>
+  <script src="../scripts/controller/admin/admin_state_manager.js?v=1"></script>
+  <script src="../scripts/model/auth/password_authenticator.js?v=2"></script>
+  <script src="../scripts/model/local/date_facade.js?v=1"></script>
+  <script src="../scripts/view/admin/admin_html_interface.js?v=1"></script>
 </head>
 <body>
 
 <div id="error_div"></div>
 
 <div class="w3-bar">
-  <p id="greeting"></p>
-  <button class="w3-bar-item w3-button w3-right w3-green"
-          onclick="location.href = './logout.php'">Logout
-  </button>
+  <p id="greeting_p" class="w3-bar-item"></p>
+  <button class="w3-bar-item w3-button w3-right w3-green">Logout</button>
 </div>
-
 
 
 <div id="content_container" class="w3-container"></div>

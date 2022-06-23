@@ -21,10 +21,10 @@
   </style>
   <script src="scripts/model/google_api/location_services/html_navigator_facade.js"></script>
   <script src="scripts/model/google_api/google_configs.js"></script>
-  <script src="scripts/model/cookie_storage.js"></script>
-  <script src="scripts/model/network_storage.js"></script>
-  <script src="scripts/view/html_interface.js"></script>
-  <script src="scripts/controller/state_manager.js"></script>
+  <script src="scripts/model/local/cookie_storage.js"></script>
+  <script src="scripts/model/network/network_storage.js"></script>
+  <script src="scripts/view/client/client_html_interface.js"></script>
+  <script src="scripts/controller/client/client_state_manager.js"></script>
 </head>
 <body>
 
@@ -37,7 +37,7 @@
 <div id='state_button_container' class="w3-container"></div>
 
 <script defer>
-  state_manager();
+  client_state_manager();
 </script>
 
 </body>

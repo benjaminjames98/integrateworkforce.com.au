@@ -9,7 +9,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
     $logged_in = isset($_SESSION['user']) && $_SESSION['user'] != '';
     echo json_encode(['success' => true,
       'logged_in' => $logged_in,
-      'user' => $_SESSION['user']]);
+      'name' => $_SESSION['user']]);
     break;
   case 'PUT':
     $input = read_json_input();

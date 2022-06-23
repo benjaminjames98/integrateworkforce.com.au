@@ -1,7 +1,7 @@
-function state_manager() {
+function client_state_manager() {
   let storage = cookie_storage();
   let archive = network_storage();
-  let view = html_interface();
+  let view = client_html_interface();
   let navigator = html_navigator_facade();
 
   let username = storage.read("username");

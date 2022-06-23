@@ -15,8 +15,11 @@ function password_authenticator() {
   }
 
   async function ensure_logged_in() {
-    if (await is_currently_logged_in()) return true;
-    redirect_to_login();
+    let login_info = await is_currently_logged_in(true);
+
+    if (login_info['logged_in'])
+      return login_info['name'];
+    else redirect_to_login();
   }
 
   async function login(name, pass) {
@@ -41,13 +44,13 @@ function password_authenticator() {
 
   // Utilities
 
-  async function is_currently_logged_in() {
+  async function is_currently_logged_in(return_info = false) {
     let response = await fetch(`${auth_url}/login_session/`, {
       method: "GET",
       headers: {"content-type": "json", "accept": "application/json"}
     });
     let json = await response.json();
-    return json["logged_in"];
+    return return_info ? json : json["logged_in"];
   }
 
   function redirect_to_login() {
