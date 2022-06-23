@@ -9,8 +9,13 @@ function date_facade() {
     else return `Good Evening: ${name}`;
   }
 
-  return {
-    get_greeting_string
-  };
+  function get_local_string(utc_string) {
+    if (!utc_string.includes('UTC')) utc_string += ' UTC';
+    utc_string = utc_string.replaceAll('-', '/')
+    let date = new Date(utc_string);
+    return date.toLocaleString();
+  }
+
+  return {get_greeting_string, get_local_string};
 
 }

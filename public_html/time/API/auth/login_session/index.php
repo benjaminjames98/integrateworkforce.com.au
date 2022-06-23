@@ -6,7 +6,7 @@ include __DIR__ . '/../../imports/utils.php';
 
 switch ($_SERVER['REQUEST_METHOD']) {
   case 'GET':
-    $logged_in = isset($_SESSION['user']) && $_SESSION['user'] != '';
+    $logged_in = is_logged_in();
     echo json_encode(['success' => true,
       'logged_in' => $logged_in,
       'name' => $_SESSION['user']]);

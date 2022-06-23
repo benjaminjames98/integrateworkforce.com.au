@@ -16,3 +16,7 @@ function is_meta_password($pass): bool {
 
   return strcmp($pass, $auth_configs['meta_admin_pass']) == 0;
 }
+
+function is_logged_in(): bool {
+  return isset($_SESSION['user']) && $_SESSION['user'] != '';
+}
