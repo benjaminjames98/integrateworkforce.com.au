@@ -4,7 +4,7 @@ function client_html_interface() {
     location.replace(location.href.replaceAll("http:", "https:"));
 
   const state_views = {
-    clocked_off: ["clock_on"],
+    clocked_off: ["clock_on", "lost"],
     on_break: ["new_worksite", "end_break", "lost"],
     clocked_on: ["new_worksite", "begin_break", "clock_off", "lost"]
   };
