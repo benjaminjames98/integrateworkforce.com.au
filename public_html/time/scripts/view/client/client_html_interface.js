@@ -13,11 +13,11 @@ function client_html_interface() {
   const state_button_container = el("state_button_container");
 
   let state_button_info = [
-    {label: "Clock On", id: "clock_on", state: "clocked_on"},
+    {label: "Start Work", id: "clock_on", state: "clocked_on"},
     {label: "New Worksite", id: "new_worksite", state: "clocked_on"},
-    {label: "Begin Lunch", id: "begin_break", state: "on_break"},
+    {label: "Start Lunch", id: "begin_break", state: "on_break"},
     {label: "End Lunch", id: "end_break", state: "clocked_on"},
-    {label: "Clock Off", id: "clock_off", state: "clocked_off"}
+    {label: "Finish Work", id: "clock_off", state: "clocked_off"}
   ];
   let state_buttons = state_button_info.map(create_state_button);
   state_button_container.append(...state_buttons);
@@ -79,29 +79,34 @@ function client_html_interface() {
   }
 
   function create_alert_div(parent_node, title_text, msg_text, color = "green") {
-    let error = document.createElement("div");
+    let alert_div = document.createElement("div");
 
     let close = document.createElement("span");
-    error.className = `w3-container w3-${color} w3-display-container`;
-    close.onclick = () => parent_node.removeChild(error);
+    alert_div.className = `w3-container w3-${color} w3-display-container
+     w3-animate-top`;
+    close.onclick = () => parent_node.removeChild(alert_div);
     close.className = "w3-button w3-display-topright";
     close.innerHTML = "×";
-    error.append(close);
+    alert_div.append(close);
 
     if (title_text) {
       let title = document.createElement("p");
       title.innerText = title_text;
       title.style.fontSize = "125%";
-      error.append(title);
+      alert_div.append(title);
     }
 
     if (msg_text) {
       let msg = document.createElement("p");
       msg.innerText = msg_text;
-      error.append(msg);
+      alert_div.append(msg);
     }
 
-    parent_node.innerText = '';
-    parent_node.append(error);
+    parent_node.innerText = "";
+    parent_node.append(alert_div);
+
+    if (color === "green") {
+      setTimeout(() => parent_node.removeChild(alert_div), 15 * 1000);
+    }
   }
 }
