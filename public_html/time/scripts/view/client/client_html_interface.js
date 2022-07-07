@@ -5,8 +5,8 @@ function client_html_interface() {
 
   const state_views = {
     clocked_off: ["clock_on"],
-    on_break: ["new_worksite", "end_break"],
-    clocked_on: ["new_worksite", "begin_break", "clock_off"]
+    on_break: ["new_worksite", "end_break", "lost"],
+    clocked_on: ["new_worksite", "begin_break", "clock_off", "lost"]
   };
   const name_field = el("name");
   const error_div = el("error_div");
@@ -17,7 +17,8 @@ function client_html_interface() {
     {label: "New Worksite", id: "new_worksite", state: "clocked_on"},
     {label: "Start Lunch", id: "begin_break", state: "on_break"},
     {label: "End Lunch", id: "end_break", state: "clocked_on"},
-    {label: "Finish Work", id: "clock_off", state: "clocked_off"}
+    {label: "Finish Work", id: "clock_off", state: "clocked_off"},
+    {label: "I'm Lost", id: "lost", state: "clocked_on"}
   ];
   let state_buttons = state_button_info.map(create_state_button);
   state_button_container.append(...state_buttons);
@@ -70,7 +71,7 @@ function client_html_interface() {
     button.innerText = info.label;
     button.addEventListener("click", function () {
       let event = new CustomEvent("state_change", {
-        detail: {action: info.label, new_state: info.state},
+        detail: {action: info.id, new_state: info.state},
         bubbles: true
       });
       this.dispatchEvent(event);

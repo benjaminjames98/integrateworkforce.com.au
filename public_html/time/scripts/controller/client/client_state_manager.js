@@ -1,6 +1,7 @@
 function client_state_manager() {
   let storage = cookie_storage();
   let archive = network_storage();
+  let communicator = network_communicator();
   let view = client_html_interface();
   let navigator = html_navigator_facade();
 
@@ -27,12 +28,15 @@ function client_state_manager() {
       return view.freeze(false);
     }
 
-    if (!await archive.create_record(
-      username,
-      e.detail.action,
-      e.detail.new_state,
-      address
-    )) {
+    let success = (e.detail.action === "lost") ?
+      await communicator.send_sos(username, e.detail.action, address) :
+      await archive.create_record(
+        username,
+        e.detail.action,
+        e.detail.new_state,
+        address
+      );
+    if (!success) {
       view.show_alert("That didn't work."
         + " Are you connected to the internet? If so, please try again", true);
       return view.freeze(false);
