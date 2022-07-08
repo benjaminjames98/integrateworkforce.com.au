@@ -1,3 +1,7 @@
+import {password_authenticator} from "../../model/auth/password_authenticator";
+import {admin_html_interface} from "../../view/admin/admin_html_interface";
+import {network_storage} from "../../model/network/network_storage";
+
 async function admin_state_manager() {
 
   let authenticator = password_authenticator();
@@ -11,3 +15,6 @@ async function admin_state_manager() {
 
 
 }
+
+
+(async () => await admin_state_manager())();

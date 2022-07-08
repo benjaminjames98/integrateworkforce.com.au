@@ -1,4 +1,4 @@
-function date_facade() {
+export function date_facade() {
 
   function get_greeting_string(name) {
     let today = new Date();

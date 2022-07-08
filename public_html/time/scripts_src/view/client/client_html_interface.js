@@ -1,4 +1,4 @@
-function client_html_interface() {
+export function client_html_interface() {
 
   if (location.protocol === "http:")
     location.replace(location.href.replaceAll("http:", "https:"));

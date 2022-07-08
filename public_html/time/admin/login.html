@@ -9,7 +9,7 @@
           font-size: 1em;
       }
   </style>
-  <script src="../scripts/model/auth/password_authenticator.js"></script>
+  <script src="../scripts_dist/admin_login_controller_bundle.js" defer></script>
 </head>
 <body>
 
@@ -31,25 +31,6 @@
     <br>
   </form>
 </div>
-
-<script>
-  let form = document.getElementById("form");
-
-  form.addEventListener("submit", async e => {
-    e.preventDefault();
-
-    let formData = new FormData(e.currentTarget);
-
-    let authenticator = password_authenticator();
-    let response = await authenticator.login(
-      formData.get("name"),
-      formData.get("pass")
-    );
-
-    if (!response)
-      document.getElementById("result_p").innerText = "Incorrect login details";
-  });
-</script>
 
 </body>
 </html>

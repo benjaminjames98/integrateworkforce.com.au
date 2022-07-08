@@ -1,4 +1,4 @@
-function network_storage() {
+export function network_storage() {
 
   let timesheet_url = "/time/API/timesheet/"
 

@@ -1,4 +1,4 @@
-function network_communicator() {
+export function network_communicator() {
 
   let sos_url = "/time/API/send_sos/";
 

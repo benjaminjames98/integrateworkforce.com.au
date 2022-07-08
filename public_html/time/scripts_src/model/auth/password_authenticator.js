@@ -1,4 +1,4 @@
-function password_authenticator() {
+export function password_authenticator() {
 
   let auth_url = "/time/API/auth";
 
@@ -54,7 +54,7 @@ function password_authenticator() {
   }
 
   function redirect_to_login() {
-    location.href = "/time/admin/login.php";
+    location.href = "/time/admin/login.html";
   }
 
   function redirect_to_admin() {

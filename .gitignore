@@ -4,4 +4,6 @@ configs.php
 /awstats/
 /public_html/cgi-bin/
 /public_html/index.html
-/public_html/time/scripts/model/google_api/google_configs.js
+/public_html/time/scripts_src/model/google_api/google_configs.js
+/package-lock.json
+/public_html/time/scripts_dist/

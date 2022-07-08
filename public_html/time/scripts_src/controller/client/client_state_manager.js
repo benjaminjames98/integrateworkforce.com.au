@@ -1,3 +1,12 @@
+import {cookie_storage} from "../../model/local/cookie_storage";
+import {network_storage} from "../../model/network/network_storage";
+import {network_communicator} from "../../model/network/network_communicator";
+import {client_html_interface} from "../../view/client/client_html_interface";
+import {
+  html_navigator_facade
+} from "../../model/google_api/location_services/html_navigator_facade";
+
+
 function client_state_manager() {
   let storage = cookie_storage();
   let archive = network_storage();
@@ -48,3 +57,5 @@ function client_state_manager() {
     view.freeze(false);
   }
 }
+
+client_state_manager();

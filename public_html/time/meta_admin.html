@@ -9,7 +9,7 @@
           font-size: 1em;
       }
   </style>
-  <script src="scripts/model/auth/password_authenticator.js"></script>
+  <script src="scripts_dist/meta_admin_controller_bundle.js" defer></script>
 </head>
 <body>
 
@@ -34,26 +34,6 @@
     <br>
   </form>
 </div>
-
-<script>
-  let form = document.getElementById("form");
-
-  form.addEventListener("submit", async e => {
-    e.preventDefault();
-
-    let formData = new FormData(e.currentTarget);
-
-    let authenticator = password_authenticator();
-    let response = await authenticator.create_user(
-      formData.get("name"),
-      formData.get("pass"),
-      formData.get("meta")
-    );
-
-    document.getElementById("result_p").innerText =
-      typeof response === "string" ? response : "Successfully created user.";
-  });
-</script>
 
 </body>
 </html>

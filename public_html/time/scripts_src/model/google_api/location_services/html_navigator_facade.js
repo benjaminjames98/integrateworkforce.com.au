@@ -1,4 +1,6 @@
-function html_navigator_facade() {
+import {google_configs} from "../google_configs";
+
+export function html_navigator_facade() {
 
   async function get_address_string() {
     let coords = await get_coords();

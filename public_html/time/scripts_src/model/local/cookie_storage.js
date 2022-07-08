@@ -1,4 +1,4 @@
-function cookie_storage() {
+export function cookie_storage() {
   let default_lifetime = 365; // Days
   let default_values = {state: {value: "clocked_off", lifetime: 0.6}};
 

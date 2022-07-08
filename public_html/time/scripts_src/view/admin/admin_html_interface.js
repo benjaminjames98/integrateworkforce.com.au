@@ -1,4 +1,6 @@
-function admin_html_interface() {
+import {date_facade} from "../../model/local/date_facade";
+
+export function admin_html_interface() {
 
   let records_table = el("records_table");
   let date = date_facade();
